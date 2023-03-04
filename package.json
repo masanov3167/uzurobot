@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "canvas": "^2.11.0",
+    "mongoose": "^6.9.1",
+    "node-fetch": "^2.6.9",
+    "telegraf": "^4.11.2",
+    "telegraf-pagination": "^1.4.1"
+  },
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
