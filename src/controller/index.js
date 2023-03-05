@@ -7,7 +7,7 @@ const MuslimFn = require("./user/photo/muslim/index");
 const SingleMuslim = require("./user/photo/muslim/Single");
 const InfoChannelFn = require("./admin/InfoChannel");
 const DeleteChannelFn = require("./admin/DeleteChannel");
-const AdminFn = require("./Admin/Admin");
+const AdminFn = require("./admin/Admin");
 const AddFn = require("./admin/Add");
 const Profilaktika = require("./admin/Profilaktika");
 const Settings = require("./admin/Settings");
@@ -29,7 +29,6 @@ const DbCheck = require("../middleware/Db");
 const GudokPaginationFn = require("./admin/GudokPagination");
 const SearchGudokFn = require("./user/SearchGudokFn");
 const StatFn = require("./admin/Stat");
-const SendRekScene = require("../scenes/admin/SendRekScene");
 const SendRekFn = require("./admin/SendRek");
 
 const Controllers = async (bot) => {
