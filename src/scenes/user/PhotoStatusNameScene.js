@@ -13,7 +13,7 @@ const { GenerateStatus } = require("../../utils");
     }
    
     if (
-      txt && !/^[A-Za-zА-Яа-яҒғҲҳҚқҚ’қ’ҲҳЎўЎўЧчҒғШшҚқҲҳЪъЁёӨөҚқҲҳҒғҲҳҚқҲҳЎўЎўЧчШшЩщЪъЁёҲҳ0-9!"'`#-=_~&(){?}^<:>*\s]+$/g.test(txt)
+      txt && !/^[A-Za-zА-Яа-яҒғҲҳҚқҚ’қ’ҲҳЎўЎўЧчҒғШшҚқҲҳЪъЁёӨөҚқҲҳҒғҲҳҚқҲҳЎўЎўЧчШшЩщЪъЁёҲҳ0-9!"'`#-=_~&(){?}ʻ^<:>*\s]+$/g.test(txt)
     ) {
       ctx.reply(
         "<b>Status yozayotganda o'zbek yoki kirillcha yozishingiz va ba'zi bir belgi(character)larni ishlatishingiz mumkin holos! \n\nNamuna: <code>Hammasi yahshi - Ҳаммаси яҳщи :)</code> \n\nAgar sizga yetishmayotgan belgilar mavjud bo'lsa adminlar bilan bog'lanib ko'ring</b>",

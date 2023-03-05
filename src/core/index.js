@@ -13,9 +13,6 @@ mongoose.connect(config.mongoLink, { useNewUrlParser: true }).then(() => console
 
 
 bot.on("my_chat_member", async (ctx) => RemoveDb(ctx,bot));
-// bot.on("my_chat_member", async (ctx) =>{
-//     ctx.replyWithAudio({source:})
-// });
 
 // Middlewares(bot);
 MyScenes(bot);
