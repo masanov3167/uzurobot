@@ -1,7 +1,7 @@
 {
   "token": "1892793420:AAEUjZ4JhiKnCAaxa9aqR-7K1nEInEbGmps",
   "active": true,
-  "mongoLink": "mongodb://0.0.0.0:27017/uzurobot",
+  "mongoLink": "mongodb+srv://masanov:masanov3167@cluster0.ss2bslz.mongodb.net/?retryWrites=true&w=majority",
   "dev": 587517395,
   "boturl": "uzurobot",
   "ball": 5,
