@@ -51,29 +51,26 @@ const Controllers = async (bot) => {
   bot.command("prof", async (ctx) => Profilaktika(ctx));
   bot.command("web", async (ctx) => Settings(ctx));
   bot.command("stat", async (ctx) => StatFn(ctx));
-  bot.hears("/otkaz", async (ctx) => {console.log("toxta endi");});
 
+  bot.action("addkanal",ctx =>{
+    AddFn(ctx);
+  })
+
+  bot.action("addgudok",ctx =>{
+    AddFn(ctx);
+  })
+  bot.action("sendrek",ctx =>{
+    SendRekFn(ctx)
+  })
+  bot.action("delmsg",ctx =>{
+    ctx.deleteMessage(ctx.update.callback_query.message.message_id);
+  })
   // callbacklarni handle qilish
   bot.on(
     "callback_query",
     (ctx, next) => {
       const data = ctx.update.callback_query.data;
-      if (data === "addkanal") {
-        AddFn(ctx);
-        return;
-      }
-      if (data === "addgudok") {
-        AddFn(ctx);
-        return;
-      }
-      if (data === "sendrek") {
-      SendRekFn(ctx)
-        return;
-      }
-      if (data === "delmsg") {
-        ctx.deleteMessage(ctx.update.callback_query.message.message_id);
-        return;
-      }
+  
       if (data.split("_")[0] === "page") {
         GudokPaginationFn(ctx);
         return;

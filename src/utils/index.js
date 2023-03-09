@@ -70,7 +70,7 @@ const readDb = (data, obj) => {
   } catch (e) {
     return obj
       ? {
-          token: "1892793420:AAEUjZ4JhiKnCAaxa9aqR-7K1nEInEbGmps",
+          token: "1449524034:AAGnZz-btLqJP4Fs6M0OWCpkpdfQbEnF6Io",
           active: true,
           mongoLink: "mongodb://localhost:27017/uzurobot",
           dev: 587517395,

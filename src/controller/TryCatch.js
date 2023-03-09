@@ -8,7 +8,6 @@ const MyFn = async (ctx, Handler, del) => {
     const txt = ctx?.message?.text?.trim();
     const data = ctx?.update?.callback_query?.data?.trim();
     if ((activeScene && txt && txt === "/cancel") || (activeScene && data && data === "cancelscene")) {
-      ctx.session.cancel = true
       await ctx.scene.leave(activeScene);
       await ctx.reply("*Yaxshi holat bekor qilindi*", {
         parse_mode: "markdown",
