@@ -50,7 +50,7 @@ class PhotoKreativScene extends BaseScene {
   constructor() {
     super("photokreativscene");
     this.on("message", (ctx) => {
-      MyFn(ctx,ctx => Fn(ctx), true);
+      MyFn(ctx,Fn, true);
     });
   }
 }

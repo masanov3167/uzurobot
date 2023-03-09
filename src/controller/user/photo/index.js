@@ -16,6 +16,6 @@ const Fn = async ctx => {
     });
 }
 
-const SelectCategory = ctx => MyFn(ctx, Fn(ctx),true);
+const SelectCategory = ctx => MyFn(ctx, Fn,true);
 
 module.exports = SelectCategory;

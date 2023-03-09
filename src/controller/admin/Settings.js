@@ -18,7 +18,7 @@ const Fn = async (ctx) => {
 };
 
 const Settings = ctx => {
-  MyFn(ctx, Fn(ctx),true);
+  MyFn(ctx, Fn,true);
 };
 
 module.exports = Settings;

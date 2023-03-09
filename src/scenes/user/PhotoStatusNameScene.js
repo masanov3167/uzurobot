@@ -31,7 +31,6 @@ const { GenerateStatus, generateRek } = require("../../utils");
       ctx.reply("*Qandeydur muammo chiqdi! Iltimos boshidan urinib ko'ring :(*",{parse_mode: "markdown"});
       return
     }
-    
     ctx.scene.leave("statusname")
     ctx.replyWithPhoto({ source: result }, {
       caption:`${generateRek()}`,
@@ -43,7 +42,7 @@ const { GenerateStatus, generateRek } = require("../../utils");
     constructor() {
       super("statusname");
       this.on("message", (ctx) => {
-        MyFn(ctx, ctx => Fn(ctx), true);
+        MyFn(ctx, Fn, true);
       });
     }
   }

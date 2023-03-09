@@ -12,7 +12,7 @@ const {
     constructor() {
       super("checkref");
       this.on("message", (ctx) => {
-        MyFn(ctx,Fn(ctx),true)
+        MyFn(ctx,Fn,true)
       });
     }
   }

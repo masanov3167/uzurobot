@@ -6,7 +6,7 @@ const Fn = async (ctx) => {
 };
 
 const SendRekFn = ( ctx) => {
-  MyFn( ctx, Fn(ctx),true);
+  MyFn( ctx, Fn,true);
 };
 
 module.exports = SendRekFn;

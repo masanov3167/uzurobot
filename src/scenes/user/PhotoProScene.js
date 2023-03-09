@@ -43,7 +43,7 @@ class PhotoProScene extends BaseScene {
   constructor() {
     super("photoproscene");
     this.on("message", (ctx) => {
-      MyFn(ctx,ctx => Fn(ctx), true);
+      MyFn(ctx,Fn, true);
     });
   }
 }

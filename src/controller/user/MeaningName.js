@@ -6,7 +6,7 @@ const Fn = async (ctx) => {
 };
 
 const MeaningName = ( ctx) => {
-  MyFn( ctx, Fn(ctx),ctx?.chat?.type !=="private");
+  MyFn( ctx, Fn,ctx?.chat?.type !=="private");
 };
 
 module.exports = MeaningName;

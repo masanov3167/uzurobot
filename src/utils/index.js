@@ -256,10 +256,11 @@ const FindNameMeaning = async (name) => {
       .split(`<div class="space-y-4">`)[1]
       ?.split("</div>")[0]
       ?.trim();
+
     if (!txt) {
       return false;
     }
-    return txt;
+    return txt.split("&quot;").join("");
   } catch {
     return false;
   }

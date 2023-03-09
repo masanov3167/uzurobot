@@ -11,6 +11,6 @@ const Fn = async ctx => {
     });
 }
 
-const BallFn = ctx => MyFn(ctx, Fn(ctx),true);
+const BallFn = ctx => MyFn(ctx, Fn,true);
 
 module.exports = BallFn;

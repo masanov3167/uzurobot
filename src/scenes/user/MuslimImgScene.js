@@ -47,7 +47,7 @@ class Photomuslimscene extends BaseScene {
   constructor() {
     super("photomuslimscene");
     this.on("message", (ctx) => {
-      MyFn(ctx,ctx => Fn(ctx), true);
+      MyFn(ctx,Fn, true);
     });
   }
 }

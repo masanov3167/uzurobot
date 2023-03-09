@@ -10,6 +10,6 @@ const Fn = async ctx => {
     });
 }
 
-const Psixologic = ctx => MyFn(ctx, Fn(ctx),true);
+const Psixologic = ctx => MyFn(ctx, Fn,true);
 
 module.exports = Psixologic;

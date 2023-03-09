@@ -23,7 +23,7 @@ const Fn = async (ctx) => {
 };
 
 const AdminFn = ( ctx) => {
-  MyFn( ctx, Fn(ctx),true);
+  MyFn( ctx, Fn,true);
 };
 
 module.exports = AdminFn;

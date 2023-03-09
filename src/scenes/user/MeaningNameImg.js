@@ -2,7 +2,7 @@ const {
   Scenes: { BaseScene },
 } = require("telegraf");
 const MyFn = require("../../controller/TryCatch");
-const { GenerateImg, GenerateStatus, FindNameMeaning } = require("../../utils");
+const { GenerateImg, GenerateStatus, FindNameMeaning, generateRek } = require("../../utils");
 const Fn = async (ctx) => {
   const txt = ctx?.message?.text?.trim();
   if (!txt) {
@@ -54,7 +54,7 @@ class MeaningNameImg extends BaseScene {
   constructor() {
     super("photomeaningscene");
     this.on("message", (ctx) => {
-      MyFn(ctx,ctx => Fn(ctx), true);
+      MyFn(ctx,Fn, true);
     });
   }
 }

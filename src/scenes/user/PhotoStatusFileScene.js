@@ -20,7 +20,7 @@ const {
     constructor() {
       super("statusfile");
       this.on("message", (ctx) => {
-        MyFn(ctx, ctx => Fn(ctx), true);
+        MyFn(ctx, Fn, true);
       });
     }
   }

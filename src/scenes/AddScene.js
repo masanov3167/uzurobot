@@ -59,7 +59,7 @@ class MyScene extends BaseScene {
   constructor() {
     super("add");
     this.on("message", (ctx) => {
-      MyFn(ctx, ctx => Fn(ctx), true);
+      MyFn(ctx, Fn, true);
     });
   }
 }

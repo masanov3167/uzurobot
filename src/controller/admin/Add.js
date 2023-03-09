@@ -12,7 +12,7 @@ const Fn = async (ctx) => {
 };
 
 const AddFn = ( ctx) => {
-  MyFn( ctx, Fn(ctx),true);
+  MyFn( ctx, Fn,true);
 };
 
 module.exports = AddFn;

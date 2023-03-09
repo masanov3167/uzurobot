@@ -41,7 +41,7 @@ const config = require("../../../config")
     constructor() {
       super("sendrek");
       this.on("message", (ctx) => {
-        MyFn(ctx,ctx => Fn(ctx), true);
+        MyFn(ctx,Fn, true);
       });
     }
   }

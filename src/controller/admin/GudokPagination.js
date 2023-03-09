@@ -32,7 +32,7 @@ const Fn = async (ctx) => {
 };
 
 const GudokPaginationFn = (ctx) => {
-  MyFn(ctx, Fn(ctx), true);
+  MyFn(ctx, Fn, true);
 };
 
 module.exports = GudokPaginationFn;

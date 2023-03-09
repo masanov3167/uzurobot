@@ -42,7 +42,7 @@ class MeaningName extends BaseScene {
   constructor() {
     super("meaningname");
     this.on("message", (ctx) => {
-      MyFn(ctx,ctx => Fn(ctx), true);
+      MyFn(ctx,Fn, true);
     });
   }
 }

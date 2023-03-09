@@ -41,7 +41,7 @@ const { generateRek } = require("../../utils");
     constructor() {
       super("searchgudok");
       this.on("message", (ctx) => {
-        MyFn(ctx, ctx => Fn(ctx), true);
+        MyFn(ctx, Fn, true);
       });
     }
   }

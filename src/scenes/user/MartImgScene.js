@@ -2,7 +2,7 @@ const {
   Scenes: { BaseScene },
 } = require("telegraf");
 const MyFn = require("../../controller/TryCatch");
-const { GenerateImg } = require("../../utils");
+const { GenerateImg, generateRek } = require("../../utils");
 const Fn = async (ctx) => {
   const txt = ctx?.message?.text?.trim();
   if (!txt) {
@@ -71,7 +71,7 @@ class MartImgScene extends BaseScene {
   constructor() {
     super("photomartscene");
     this.on("message", (ctx) => {
-      MyFn(ctx,ctx => Fn(ctx), true);
+      MyFn(ctx,Fn, true);
     });
   }
 }
