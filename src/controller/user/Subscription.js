@@ -1,7 +1,7 @@
 const { User } = require("../../models");
 const config = require("../../../config");
-const { sendError } = require("../../utils");
-const StarTer = require("../StarTer");
+const { sendError, generateRek } = require("../../utils");
+const StartFn = require("../Start");
 
 const Subcription = async (ctx, bot) => {
   try {
@@ -18,13 +18,13 @@ const Subcription = async (ctx, bot) => {
             config.ball
           } ball berildi. \nHozir sizda ${
             oldUser.ball + config.ball
-          } ta ball bor!`,
-          { parse_mode: "HTML" }
+          } ta ball bor! \n\n${generateRek()}`,
+          { parse_mode: "HTML", disable_web_page_preview:true }
         );
       }
     }
     await ctx.deleteMessage(ctx.update.callback_query.message.message_id)
-    ctx.reply(StarTer(ctx),{parse_mode:"markdown"});
+    await StartFn(ctx);
   } catch(e) {
     sendError(e,ctx)
   }

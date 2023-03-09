@@ -59,7 +59,11 @@ const Fn = async (ctx) => {
     myKey.type === "mart"
   );
 
-  await ctx.replyWithPhoto({ source: result });
+  await ctx.replyWithPhoto({ source: result },
+    {
+      caption: `${generateRek()}`,
+      parse_mode: "markdown",
+    });
   ctx.scene.leave("photomartscene");
 };
 
@@ -67,7 +71,7 @@ class MartImgScene extends BaseScene {
   constructor() {
     super("photomartscene");
     this.on("message", (ctx) => {
-      MyFn(ctx, Fn(ctx), true);
+      MyFn(ctx,ctx => Fn(ctx), true);
     });
   }
 }

@@ -54,13 +54,12 @@ const Fn = async (ctx) => {
   }
 };
 
-//AAMCBAADGQEAARxAD2P7QaCDPK61Eh41iFGi7QI_0p9GAAItDAACrJNRUo8vFcjz0KsuAQAHcwADLgQ
 
 class MyScene extends BaseScene {
   constructor() {
     super("add");
     this.on("message", (ctx) => {
-      MyFn(ctx, Fn(ctx), true);
+      MyFn(ctx, ctx => Fn(ctx), true);
     });
   }
 }

@@ -51,6 +51,7 @@ const Controllers = async (bot) => {
   bot.command("prof", async (ctx) => Profilaktika(ctx));
   bot.command("web", async (ctx) => Settings(ctx));
   bot.command("stat", async (ctx) => StatFn(ctx));
+  bot.hears("/otkaz", async (ctx) => {console.log("toxta endi");});
 
   // callbacklarni handle qilish
   bot.on(

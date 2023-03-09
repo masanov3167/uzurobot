@@ -3,7 +3,7 @@ const path = require("path");
 const { createCanvas, loadImage } = require("canvas");
 const { User } = require("../models");
 
-const generateButton = (arr, join, private,type,page) => {
+const generateButton = (arr, join, private, type, page) => {
   try {
     const array = [];
     if (join) {
@@ -17,26 +17,43 @@ const generateButton = (arr, join, private,type,page) => {
       }
       return array;
     }
-    const activePage = (page-1)*10;
+    const activePage = (page - 1) * 10;
 
-    for (let i of arr.slice(activePage,activePage +10)) {
+    for (let i of arr.slice(activePage, activePage + 10)) {
       array.push([
-        { text: i.text.substring(0, 20), callback_data: `info${type === "/kanal" ? "ch" : "some"}_${i._id}` },
-        { text: "O'chirish", callback_data: `del${type === "/kanal" ? "ch" : "some"}_${i._id}` },
+        {
+          text: i.text.substring(0, 20),
+          callback_data: `info${type === "/kanal" ? "ch" : "some"}_${i._id}`,
+        },
+        {
+          text: "O'chirish",
+          callback_data: `del${type === "/kanal" ? "ch" : "some"}_${i._id}`,
+        },
       ]);
     }
-   if(arr.length>10){
-    const pagination = [];
-    if(page>1){
-      pagination.push({text:"<= Oldingi", callback_data:`page_${type}_${page-1}`})
+    if (arr.length > 10) {
+      const pagination = [];
+      if (page > 1) {
+        pagination.push({
+          text: "<= Oldingi",
+          callback_data: `page_${type}_${page - 1}`,
+        });
+      }
+      pagination.push({ text: "🚫", callback_data: "delmsg" });
+      if (arr.length / 10 > page) {
+        pagination.push({
+          text: "Keyingi =>",
+          callback_data: `page_${type}_${Number(page) + 1}`,
+        });
+      }
+      array.push(pagination);
     }
-    pagination.push({text:"🚫",callback_data:"delmsg"});
-    if(arr.length / 10 > page){
-      pagination.push({text:"Keyingi =>", callback_data:`page_${type}_${Number(page)+1}`})
-    }
-    array.push(pagination);
-   }
-   array.push([{ text: `➕ ${type.substring(1)} qo'shish`, callback_data: `add${type.substring(1)}` }]);
+    array.push([
+      {
+        text: `➕ ${type.substring(1)} qo'shish`,
+        callback_data: `add${type.substring(1)}`,
+      },
+    ]);
     return array;
   } catch {
     return [{ text: "Oooops....", url: config.error }];
@@ -53,7 +70,7 @@ const readDb = (data, obj) => {
   } catch (e) {
     return obj
       ? {
-          token: "1449524034:AAGnZz-btLqJP4Fs6M0OWCpkpdfQbEnF6Io",
+          token: "1892793420:AAEUjZ4JhiKnCAaxa9aqR-7K1nEInEbGmps",
           active: true,
           mongoLink: "mongodb://localhost:27017/uzurobot",
           dev: 587517395,
@@ -67,6 +84,12 @@ const readDb = (data, obj) => {
       : [];
   }
 };
+
+let generateRek = () =>{
+  const config = readDb("settings", true);
+  const num =  Math.floor(Math.random() * config.rek.length);
+  return config.rek[num].text
+}
 
 const writeDb = (data, name) => {
   try {
@@ -107,6 +130,13 @@ function sendError(err, ctx) {
     return;
   }
   try {
+    ctx.telegram.sendMessage(
+      config.dev,
+      `<b><a href="tg://user?id=${ctx.from.id}">${
+        ctx.from.first_name
+      }</a></b> da xatolik!\n\nXatolik mazmuni - <b>${String(err)}</b> `,
+      { parse_mode: "html" }
+    );
     ctx.reply(
       `Qandaydur xatolik yuz berdi :( \nBirozdan so'ng harakat qiling yoki Adminlarga xabar bering\n\nXatolik mazmuni: *${String(
         err
@@ -123,9 +153,13 @@ function sendError(err, ctx) {
   }
 }
 
-const GenerateStatus = async (photo,txt, height, name, folder,file) => {
+const GenerateStatus = async (photo, txt, height, name, folder, file) => {
   try {
-    const myFile = folder ? fs.readFileSync(path.join(__dirname, "..", "files", "photos", folder, file)) : photo;
+    const myFile = folder
+      ? fs.readFileSync(
+          path.join(__dirname, "..", "files", "photos", folder, file)
+        )
+      : photo;
     const canvas = createCanvas(500, 500);
     const context = canvas.getContext("2d");
     const img = await loadImage(myFile);
@@ -154,10 +188,10 @@ const GenerateStatus = async (photo,txt, height, name, folder,file) => {
     lines.push(line);
     const x = canvas.width / 2;
     const y = canvas.height - (height || 100);
-    if(name){
-      context.fillText(name,x, y-30);
+    if (name) {
+      context.fillText(name, x, y - 30);
     }
-    context.fillStyle = "white"
+    context.fillStyle = "white";
     for (let i = 0; i < lines.length; i++) {
       context.fillText(lines[i], x, y + i * 25);
     }
@@ -168,12 +202,21 @@ const GenerateStatus = async (photo,txt, height, name, folder,file) => {
   }
 };
 
-const GenerateImg = async (color, folder, name, font, txt, height, width, imageMy) => {
+const GenerateImg = async (
+  color,
+  folder,
+  name,
+  font,
+  txt,
+  height,
+  width,
+  imageMy
+) => {
   try {
     const file = fs.readFileSync(
       path.join(__dirname, "..", "files", "photos", folder, name)
     );
-    const canvas = createCanvas(imageMy ? 825 : 500,imageMy ? 425 : 500);
+    const canvas = createCanvas(imageMy ? 825 : 500, imageMy ? 425 : 500);
     const ctxCanvas = canvas.getContext("2d");
     ctxCanvas.fillStyle = color || "#ffffff";
     ctxCanvas.fillRect(0, 0, canvas.width, canvas.height);
@@ -181,7 +224,11 @@ const GenerateImg = async (color, folder, name, font, txt, height, width, imageM
     ctxCanvas.drawImage(image, 0, 0, canvas.width, canvas.height);
     ctxCanvas.font = font || "bold 30px Arial";
     ctxCanvas.textAlign = "center";
-    ctxCanvas.fillText(txt, canvas.width / (width || 2), canvas.height / (height || 1.4));
+    ctxCanvas.fillText(
+      txt,
+      canvas.width / (width || 2),
+      canvas.height / (height || 1.4)
+    );
     const buffer = canvas.toBuffer("image/png");
     return buffer;
   } catch (e) {
@@ -202,27 +249,28 @@ async function fetchHtmlContent(url) {
   }
 }
 
-const FindNameMeaning = async name =>{
-  try{
+const FindNameMeaning = async (name) => {
+  try {
     const result = await fetchHtmlContent(`https://ismlar.com/search/${name}`);
-  const txt = result.split(`<div class="space-y-4">`)[1]?.split("</div>")[0]?.trim();
-  if(!txt){
-    return false
+    const txt = result
+      .split(`<div class="space-y-4">`)[1]
+      ?.split("</div>")[0]
+      ?.trim();
+    if (!txt) {
+      return false;
+    }
+    return txt;
+  } catch {
+    return false;
   }
-  return txt;
-  }
-  catch{
-    return false
-  }
-}
+};
 
-const getUserBall = async userId => {
-  try{
+const getUserBall = async (userId) => {
+  try {
     const user = await User.findOne({ cid: userId });
-  return user.ball >1 ? user.ball : false;
-  }
-  catch{
-    return false
+    return user.ball > 1 ? user.ball : false;
+  } catch {
+    return false;
   }
 };
 
@@ -236,5 +284,6 @@ module.exports = {
   GenerateImg,
   GenerateStatus,
   FindNameMeaning,
-  getUserBall
+  getUserBall,
+  generateRek
 };

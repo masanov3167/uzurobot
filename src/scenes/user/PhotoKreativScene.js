@@ -2,7 +2,7 @@ const {
   Scenes: { BaseScene },
 } = require("telegraf");
 const MyFn = require("../../controller/TryCatch");
-const { GenerateImg } = require("../../utils");
+const { GenerateImg, generateRek } = require("../../utils");
 const Fn = async (ctx) => {
   const txt = ctx?.message?.text?.trim();
   if (!txt) {
@@ -39,7 +39,10 @@ const Fn = async (ctx) => {
       : 1.36
   );
 
-  await ctx.replyWithPhoto({ source: buffer });
+  await ctx.replyWithPhoto({ source: buffer },{
+    caption:`${generateRek()}`,
+    parse_mode:"markdown"
+  });
   ctx.scene.leave("photokreativscene");
 };
 
@@ -47,7 +50,7 @@ class PhotoKreativScene extends BaseScene {
   constructor() {
     super("photokreativscene");
     this.on("message", (ctx) => {
-      MyFn(ctx, Fn(ctx), true);
+      MyFn(ctx,ctx => Fn(ctx), true);
     });
   }
 }

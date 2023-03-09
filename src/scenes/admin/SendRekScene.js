@@ -24,6 +24,8 @@ const config = require("../../../config")
       return;
     }
   
+  
+
     const users = await User.find();
 
     for(let i of users){
@@ -31,15 +33,15 @@ const config = require("../../../config")
             ctx.telegram.copyMessage(i.cid,-1001786348256, txt);
         },100)
     }
-
       await ctx.scene.leave("sendrek");
+      await ctx.reply("Userlarga habar yuborildi",{parse_mode:"markdown"})
   };
   
   class SendRekScene extends BaseScene {
     constructor() {
       super("sendrek");
       this.on("message", (ctx) => {
-        MyFn(ctx, Fn(ctx), true);
+        MyFn(ctx,ctx => Fn(ctx), true);
       });
     }
   }

@@ -2,7 +2,7 @@ const {
   Scenes: { BaseScene },
 } = require("telegraf");
 const MyFn = require("../../controller/TryCatch");
-const {  FindNameMeaning } = require("../../utils");
+const {  FindNameMeaning, generateRek } = require("../../utils");
 
 
 const Fn = async (ctx) => {
@@ -33,7 +33,7 @@ const Fn = async (ctx) => {
     return;
   }
   ctx.scene.leave("meaningname");
-  ctx.reply(`🔍 ${txt} \n\n📑 Ismingiz ma'nosi quyidagicha 👇\n\n *${name}*!`, {
+  ctx.reply(`🔍 ${txt} \n\n📑 Ismingiz ma'nosi quyidagicha 👇\n\n *${name}*! \n\n${generateRek()}`, {
     parse_mode: "markdown",
   });
 };
@@ -42,7 +42,7 @@ class MeaningName extends BaseScene {
   constructor() {
     super("meaningname");
     this.on("message", (ctx) => {
-      MyFn(ctx, Fn(ctx), true);
+      MyFn(ctx,ctx => Fn(ctx), true);
     });
   }
 }

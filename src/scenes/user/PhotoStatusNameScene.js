@@ -2,11 +2,11 @@ const {
     Scenes: { BaseScene },
   } = require("telegraf");
   const MyFn = require("../../controller/TryCatch");
-const { GenerateStatus } = require("../../utils");
+const { GenerateStatus, generateRek } = require("../../utils");
   const Fn = async (ctx) => {
     const txt = ctx?.message?.text?.trim();
     if (!txt) {
-      ctx.reply("<b>Faqat matn kiriting!</b>", {
+      ctx.reply(`<b>Faqat matn kiriting!</b> \n\n${generateRek()}`, {
         parse_mode: "html",
       });
       return;
@@ -33,14 +33,17 @@ const { GenerateStatus } = require("../../utils");
     }
     
     ctx.scene.leave("statusname")
-    ctx.replyWithPhoto({ source: result });
+    ctx.replyWithPhoto({ source: result }, {
+      caption:`${generateRek()}`,
+      parse_mode:"markdown"
+    });
   };
   
   class PhotoStatusNameScene extends BaseScene {
     constructor() {
       super("statusname");
       this.on("message", (ctx) => {
-        MyFn(ctx, Fn(ctx), true);
+        MyFn(ctx, ctx => Fn(ctx), true);
       });
     }
   }

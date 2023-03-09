@@ -1,8 +1,9 @@
 const MyFn = require("../TryCatch");
+const {generateRek} = require("../../utils")
 
 const Fn = async (ctx) => {
   await ctx.reply(
-    "*Telegramda o'rnatmoqchi bo'lgan foningiz ustiga bosing👇*",
+    `*Telegramda o'rnatmoqchi bo'lgan foningiz ustiga bosing👇 \n\n${generateRek()}*`,
     {
       parse_mode: "markdown",
       reply_markup: {
@@ -57,6 +58,7 @@ const Fn = async (ctx) => {
           ],
         ],
       },
+      disable_web_page_preview:true
     }
   );
 };

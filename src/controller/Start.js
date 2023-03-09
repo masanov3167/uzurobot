@@ -12,6 +12,6 @@ const Fn = async ctx => await ctx.reply(
     parse_mode:"markdown"
 });
 
-const StartFn = ctx => MyFn(ctx, Fn(ctx),true);
+const StartFn = ctx => MyFn(ctx,ctx => Fn(ctx),true);
 
 module.exports = StartFn;

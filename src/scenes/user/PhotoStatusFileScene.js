@@ -6,7 +6,7 @@ const {
    
     const photo = ctx?.message?.photo;
     if(!photo){
-        ctx.reply("*Status yozish uchun rasm yuboring! \n\nEslatma ⚠️ statusga mos tushadigan obyektlari kamroq rasm yuboring :)*",{parse_mode:"markdown"});
+        ctx.reply("*Status yozish uchun rasm yuboring! \n\nEslatma ⚠️ statusga mos tushadigan obyektlari kamroq (5x5) rasm yuboring :)*",{parse_mode:"markdown"});
         return
     }
 
@@ -20,7 +20,7 @@ const {
     constructor() {
       super("statusfile");
       this.on("message", (ctx) => {
-        MyFn(ctx, Fn(ctx), true);
+        MyFn(ctx, ctx => Fn(ctx), true);
       });
     }
   }

@@ -38,7 +38,7 @@ class AddChannelLink extends BaseScene {
     super("addchannellink");
 
     this.on("message", (ctx) => {
-      MyFn(ctx, Fn(ctx),ctx?.chat?.type !=="private");
+      MyFn(ctx,ctx => Fn(ctx),ctx?.chat?.type !=="private");
     });
   }
 }

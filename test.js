@@ -1,4 +1,7 @@
+const a = ["sd","ds","wewe","wd"];
 
-const Logger = () => "1".repeat(50).split("").map((_,index) => console.log(`${index+1}) ${(index+1) % 2 === 0 ? 2 : 1}`));
+const random = Math.random(0,a.length);
 
-Logger()
+console.log(random);
+let num = Math.floor(Math.random() * a.length);
+console.log(num);
