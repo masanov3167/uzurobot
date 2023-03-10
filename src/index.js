@@ -1,6 +1,14 @@
+const { User } = require("./models");
+const config = require("../config")
+
 require("./core");
 
-process.on('unhandledRejection', (err, promise) => {
+process.on('unhandledRejection',async (err, promise) => {
+  if(String(err).includes("bot was blocked by the user") || String(err).includes("chat not found") && err?.on?.payload?.from_chat_id==config.db_channel){
+    const chatid = err?.on?.payload?.chat_id;
+    if(chatid){
+    await  User.findOneAndRemove({cid: chatid})
+    } 
+  }
     console.log('Unhandled Rejection at:', promise, 'reason:', err)
-    // You can add your own error handling logic here, such as sending an error message to the user.
-  })
+})

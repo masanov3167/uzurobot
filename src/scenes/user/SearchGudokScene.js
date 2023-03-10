@@ -27,13 +27,19 @@ const { generateRek } = require("../../utils");
     if (name.length==0) {
       ctx.reply("*topa olmadim ⚠️*", {
         parse_mode: "markdown",
+        reply_markup:{
+          inline_keyboard:[
+            [{text:"Qidiruvni to'xtatish", callback_data:"cancelscene"}]
+          ]
+        }
       });
       return;
     }
     ctx.scene.leave("searchgudok");
     ctx.replyWithAudio(name[0].file_id,{
         parse_mode:"markdown",
-        caption:`*${name[0].text} - ${generateRek()}*`
+        caption:`*${name[0].text} - ${generateRek()}*`,
+        reply_to_message_id: ctx.message.message_id
     });
   };
   

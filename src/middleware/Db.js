@@ -10,7 +10,7 @@ const DbCheck = async (ctx, next) => {
       if (!user) {
         const value = {
           cid: ctx.from.id,
-          ball: 5,
+          ball: config.ball,
           lang: ctx.from.language_code,
         };
         const Saved = new User(value);
@@ -23,9 +23,10 @@ const DbCheck = async (ctx, next) => {
           const diffTime = Math.abs(now - lastLogin);
           const result = diffTime > 86400000;
           if (result) {
-            if (ball < 2) {
+            if (ball < config.mball) {
               ctx.reply(
-                "*Sizning balingiz yetarli emas botni ishlatish uchun kuniga 2ball sarflashinigiz kerak sizda esa 2ball yo'q shuning uchun pastdagi tugmani bosib do'stlaringizni taklif qiling! Ular ushbu havola orqali kirib kanallarimizga obuna bo'lsa va oldin botni ishlatmagan bo'lsa biz sizga ball beramiz*",
+                `*Sizning balingiz yetarli emas!
+                 \nBotni ishlatish uchun kuniga ${config.mball}ball sarflashinigiz kerak sizda esa ${config.mball}ball yo'q shuning uchun pastdagi tugmani bosib do'stlaringizni taklif qiling! Ular ushbu havola orqali kirib kanallarimizga obuna bo'lsa va oldin botni ishlatmagan bo'lsa biz sizga ball beramiz*`,
                 {
                   parse_mode: "markdown",
                   reply_markup: {

@@ -15,6 +15,7 @@ const MyFn = async (ctx, Handler, del) => {
       await ctx.reply(StarTer(), {
         parse_mode: "markdown",
         reply_markup: { keyboard: StarterBtn() },
+        resize_keyboard:true
       });
       return
     } 

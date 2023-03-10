@@ -14,11 +14,11 @@ const Subcription = async (ctx, bot) => {
       await User.findOneAndUpdate({ cid: findUser.refid },{ ball: oldUser.ball + config.ball },{new:true});
        await bot.telegram.sendMessage(
           findUser.refid,
-          `Sizning taklif havolangiz orqali <a href="tg://user?id=${cid}">foydalanuvchi</a> botga kirdi va kanallarga a'zo bo'ldi.Sizga ${
+          `<b> Sizning taklif havolangiz orqali <a href="tg://user?id=${cid}">foydalanuvchi</a> botga kirdi va kanallarga a'zo bo'ldi.Sizga ${
             config.ball
           } ball berildi. \nHozir sizda ${
             oldUser.ball + config.ball
-          } ta ball bor! \n\n${generateRek()}`,
+          } ta ball bor! \n\n${generateRek()}</b>`,
           { parse_mode: "HTML", disable_web_page_preview:true }
         );
       }

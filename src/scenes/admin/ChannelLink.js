@@ -8,13 +8,13 @@ const Fn = async ctx =>{
   const txt = ctx?.message?.text;
   if (txt) {
     const { id, title } = ctx.session.chan;
-    if (
-      /^https?:\/\/t(?:elegram)?\.me\/(?!joinchat\/)\S+$/.test(txt) ||
-      /^https?:\/\/(?:t(elegram)?\.me|telegram\.org)\/joinchat\/([a-zA-Z0-9_-]{22,})$/.test(
-        txt
-      )
+    if (/^https?:\/\/t(?:elegram)?\.me\/(?!joinchat\/)\S+$/.test(txt) ||
+      /^https?:\/\/(?:t(elegram)?\.me|telegram\.org)\/joinchat\/([a-zA-Z0-9_-]{22,})$/.test(txt) 
     ) {
-      const value = { text: title, cid: id, link: txt };
+     
+
+      
+      const value = { text: title.substring(0,30), cid: id, link: txt };
       const channel = new Channel(value);
       await channel.save();
       writeDb(channel,"channels")

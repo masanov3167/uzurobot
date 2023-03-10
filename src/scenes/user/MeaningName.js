@@ -33,8 +33,9 @@ const Fn = async (ctx) => {
     return;
   }
   ctx.scene.leave("meaningname");
-  ctx.reply(`🔍 ${txt} \n\n📑 Ismingiz ma'nosi quyidagicha 👇\n\n *${name}*! \n\n${generateRek()}`, {
+  ctx.reply(`Ismiz ma'nosi 👇\n\n *${name}*! \n\n*${generateRek()}*`, {
     parse_mode: "markdown",
+    disable_web_page_preview:true
   });
 };
 

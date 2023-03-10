@@ -22,7 +22,7 @@ const generateButton = (arr, join, private, type, page) => {
     for (let i of arr.slice(activePage, activePage + 10)) {
       array.push([
         {
-          text: i.text.substring(0, 20),
+          text: type ==="/kanal" ? i.link : i.title,
           callback_data: `info${type === "/kanal" ? "ch" : "some"}_${i._id}`,
         },
         {
@@ -72,7 +72,7 @@ const readDb = (data, obj) => {
       ? {
           token: "1449524034:AAGnZz-btLqJP4Fs6M0OWCpkpdfQbEnF6Io",
           active: true,
-          mongoLink: "mongodb://localhost:27017/uzurobot",
+          mongoLink: "mongodb://localhost:27017/admin",
           dev: 587517395,
           boturl: "uzurobot",
           ball: 5,

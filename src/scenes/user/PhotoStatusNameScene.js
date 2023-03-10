@@ -17,7 +17,13 @@ const { GenerateStatus, generateRek } = require("../../utils");
     ) {
       ctx.reply(
         "<b>Status yozayotganda o'zbek yoki kirillcha yozishingiz va ba'zi bir belgi(character)larni ishlatishingiz mumkin holos! \n\nNamuna: <code>Hammasi yahshi - Ҳаммаси яҳщи :)</code> \n\nAgar sizga yetishmayotgan belgilar mavjud bo'lsa adminlar bilan bog'lanib ko'ring</b>",
-        { parse_mode: "html" }
+        { parse_mode: "html",
+      reply_markup:{
+        inline_keyboard:[
+          [{text:"Bekor qilish",callback_data:"cancelscene"}]
+        ]
+      }
+      }
       );
       return;
     }

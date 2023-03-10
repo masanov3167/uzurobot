@@ -2,7 +2,7 @@ const {
   Scenes: { BaseScene },
 } = require("telegraf");
 const MyFn = require("../../controller/TryCatch");
-const { GenerateImg, GenerateStatus, FindNameMeaning, generateRek } = require("../../utils");
+const { GenerateStatus, FindNameMeaning, generateRek } = require("../../utils");
 const Fn = async (ctx) => {
   const txt = ctx?.message?.text?.trim();
   if (!txt) {

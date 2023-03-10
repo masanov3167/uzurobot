@@ -1,6 +1,5 @@
 const config = require("../../../config");
 const { User } = require("../../models");
-const { removeDb, readDb, updateDb, writeDb } = require("../../utils");
 
 const RemoveDb = async (ctx,bot) => {
   try {

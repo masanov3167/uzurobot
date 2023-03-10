@@ -1,6 +1,6 @@
 const ErrorAnswerInlineQuery = require("../controller/user/ErrorAnswerInlineQuery");
 const { User } = require("../models");
-const { generateButton, sendError, readDb } = require("../utils");
+const { generateButton, sendError, readDb, generateRek } = require("../utils");
 const config = readDb("settings", true);
 
 const isSubscribe = async (ctx, next) => {
@@ -11,7 +11,7 @@ const isSubscribe = async (ctx, next) => {
     ) {
       if (!readDb("settings", true).active) {
         if (!ctx?.update?.inline_query) {
-          ctx.reply("*Botda profilaktika ishlari olib borilmoqda 🔐⚠️*", {
+          ctx.reply(`*Botda profilaktika ishlari olib borilmoqda 🔐⚠️*\n\n${generateRek()}`, {
             parse_mode: "markdown",
             reply_markup: {
               remove_keyboard: true,
@@ -22,7 +22,7 @@ const isSubscribe = async (ctx, next) => {
         ErrorAnswerInlineQuery(
           ctx,
           "Botimizda profilaktika ishlari olib borilmoqda iltimos keyinroq harakat qilib ko'ring :)",
-          `Assalomu alaykum ${ctx.from.first_name} \n\nBotimizni sizlar uchun yaxshi yangilik qo'shish uhcun biroz muddatga o'chirib turamiz tez orada kotta yangiliklar bilan qaytamiz`,
+          `Assalomu alaykum ${ctx.from.first_name} \n\nBotimizni sizlar uchun yaxshi yangilik qo'shish uchun biroz muddatga o'chirib turamiz tez orada kotta yangiliklar bilan qaytamiz \n\n${generateRek()}`,
           "Bot ta'mirda ⚠️"
         );
         return;
@@ -54,7 +54,7 @@ const isSubscribe = async (ctx, next) => {
                     cid: ctx.from.id,
                     lang: ctx.from.language_code,
                     refid: refid,
-                    ball: 5,
+                    ball: config.ball,
                     status: 1,
                   };
                   const newUser = new User(value);
@@ -66,8 +66,8 @@ const isSubscribe = async (ctx, next) => {
           if (!ctx?.update?.inline_query) {
           const button = generateButton(filter, true);
           await ctx.reply(
-            `Assalomu alaykum ${ctx.from.first_name} \n\nBotdan foydalanishdan avval kanallarimizga obuna bo'ling!`,
-            { reply_markup: { inline_keyboard: button } }
+            `*Assalomu alaykum ${ctx.from.first_name.substring(0,30)} \n\nBotdan foydalanishdan avval kanallarimizga obuna bo'ling! \n\n${generateRek()}*`,
+            { reply_markup: { inline_keyboard: button },parse_mode:"markdown",disable_web_page_preview:true }
           );
           return;
         }

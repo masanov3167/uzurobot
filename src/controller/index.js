@@ -30,6 +30,7 @@ const GudokPaginationFn = require("./admin/GudokPagination");
 const SearchGudokFn = require("./user/SearchGudokFn");
 const StatFn = require("./admin/Stat");
 const SendRekFn = require("./admin/SendRek");
+const MyFn = require("./TryCatch");
 
 const Controllers = async (bot) => {
   // start the bot
@@ -63,7 +64,10 @@ const Controllers = async (bot) => {
     SendRekFn(ctx)
   })
   bot.action("delmsg",ctx =>{
-    ctx.deleteMessage(ctx.update.callback_query.message.message_id);
+    ctx.deleteMessage(ctx?.update?.callback_query?.message?.message_id);
+  })
+  bot.action("cancelscene",ctx =>{
+    MyFn(ctx, function some(ctx){ctx.deleteMessage(ctx?.update?.callback_query?.message?.message_id)}, true)
   })
   // callbacklarni handle qilish
   bot.on(
