@@ -45,7 +45,7 @@ const DbCheck = async (ctx, next) => {
             }
             await User.findOneAndUpdate(
               { cid: ctx.from.id },
-              { ball: ball - 2, last_upd: new Date() }
+              { ball: ball - config.mball, last_upd: new Date() }
             );
           }
         }

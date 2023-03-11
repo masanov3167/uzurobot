@@ -69,18 +69,7 @@ const readDb = (data, obj) => {
     );
   } catch (e) {
     return obj
-      ? {
-          token: "1449524034:AAGnZz-btLqJP4Fs6M0OWCpkpdfQbEnF6Io",
-          active: true,
-          mongoLink: "mongodb://localhost:27017/admin",
-          dev: 587517395,
-          boturl: "uzurobot",
-          ball: 5,
-          db_channel: -1001820877016,
-          error: "https://t.me/+s4XPzLFbTsAxZDdi",
-          error_img:
-            "https://www.freeiconspng.com/thumbs/error-icon/error-icon-32.png",
-        }
+      ? {}
       : [];
   }
 };

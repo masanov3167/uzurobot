@@ -11,7 +11,7 @@ const isSubscribe = async (ctx, next) => {
     ) {
       if (!readDb("settings", true).active) {
         if (!ctx?.update?.inline_query) {
-          ctx.reply(`*Botda profilaktika ishlari olib borilmoqda 🔐⚠️*\n\n${generateRek()}`, {
+          ctx.reply(`*Botda profilaktika ishlari olib borilmoqda 🔐⚠️\n\n${generateRek()}*`, {
             parse_mode: "markdown",
             reply_markup: {
               remove_keyboard: true,
@@ -22,7 +22,7 @@ const isSubscribe = async (ctx, next) => {
         ErrorAnswerInlineQuery(
           ctx,
           "Botimizda profilaktika ishlari olib borilmoqda iltimos keyinroq harakat qilib ko'ring :)",
-          `Assalomu alaykum ${ctx.from.first_name} \n\nBotimizni sizlar uchun yaxshi yangilik qo'shish uchun biroz muddatga o'chirib turamiz tez orada kotta yangiliklar bilan qaytamiz \n\n${generateRek()}`,
+          `Assalomu alaykum ${ctx.from.first_name} \n\nBotimizni sizlar uchun yaxshi yangilik qo'shish uchun biroz muddatga o'chirib turamiz tez orada kotta yangiliklar bilan qaytamiz \n\n*${generateRek()}*`,
           "Bot ta'mirda ⚠️"
         );
         return;

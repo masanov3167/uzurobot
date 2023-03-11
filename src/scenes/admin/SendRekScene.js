@@ -51,7 +51,7 @@ const Fn = async (ctx) => {
     if (
       command[0].trim() !== "/add" ||
       command.length == 1 ||
-      (command.length > 1 && command[1].split(":").length < 2)
+      (command.length > 1 && command[1].split(":").length < 3)
     ) {
       await ctx.reply(`Buyrurqni to'gri ishlating :(\n\n${Text}`, {
         parse_mode: "html",

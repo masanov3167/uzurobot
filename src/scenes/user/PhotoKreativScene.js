@@ -40,7 +40,7 @@ const Fn = async (ctx) => {
   );
 
   await ctx.replyWithPhoto({ source: buffer },{
-    caption:`${generateRek()}`,
+    caption:`*${generateRek()}*`,
     parse_mode:"markdown"
   });
   ctx.scene.leave("photokreativscene");

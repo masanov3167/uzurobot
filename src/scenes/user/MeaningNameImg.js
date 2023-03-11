@@ -43,7 +43,7 @@ const Fn = async (ctx) => {
   await ctx.replyWithPhoto(
     { source: result },
     {
-      caption: `${generateRek()}`,
+      caption: `*${generateRek()}*`,
       parse_mode: "markdown",
     }
   );

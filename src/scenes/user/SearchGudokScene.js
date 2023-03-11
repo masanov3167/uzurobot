@@ -38,8 +38,7 @@ const { generateRek } = require("../../utils");
     ctx.scene.leave("searchgudok");
     ctx.replyWithAudio(name[0].file_id,{
         parse_mode:"markdown",
-        caption:`*${name[0].text} - ${generateRek()}*`,
-        reply_to_message_id: ctx.message.message_id
+        caption:`*${name[0].text} \n\n ${generateRek()}*`,
     });
   };
   

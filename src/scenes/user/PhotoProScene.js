@@ -6,7 +6,7 @@ const { GenerateImg, generateRek } = require("../../utils");
 const Fn = async (ctx) => {
   const txt = ctx?.message?.text?.trim();
   if (!txt) {
-    ctx.reply(`<b>Faqat matn kiriting! \n\nNamuna: <code>Jumabek</code></b>\n\n${generateRek()}`, {
+    ctx.reply(`<b>Faqat matn kiriting! \n\nNamuna: <code>Jumabek</code></b>\n\n<b>${generateRek()}</b>`, {
       parse_mode: "html",
     });
     return;
@@ -33,7 +33,7 @@ const Fn = async (ctx) => {
   );
 
   await ctx.replyWithPhoto({ source: buffer },{
-    caption:`${generateRek()}`,
+    caption:`*${generateRek()}*`,
     parse_mode:"markdown"
   });
   ctx.scene.leave("photoproscene");
