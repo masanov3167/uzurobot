@@ -3,7 +3,7 @@ const {
 } = require("telegraf");
 const MyFn = require("../controller/TryCatch");
 const { Gudok } = require("../models");
-const { readDb } = require("../utils");
+const { readDb, updateSettings } = require("../utils");
 
 const Fn = async (ctx) => {
   const type = ctx.session.addType;
@@ -51,6 +51,27 @@ const Fn = async (ctx) => {
     ctx.reply("*Yaxshi gudok muvaffaqiyatli saqlandi! Ko'rish uchun /gudok*",{
       parse_mode:"markdown"
     })
+  }
+  if (type === "addrek") {
+    const text = ctx?.message?.text;
+    if (text) {
+      const reklama = readDb("settings",true);
+      const oldRek = reklama?.rek?.find(
+        (item) => item.text === text
+      );
+      if (oldRek) {
+        ctx.reply(
+          "ushbu mini reklama bazada avvaldan bor boshqa reklamani ulashga harakat qiling!"
+        );
+        return;
+      }
+      ctx.scene.leave("add");
+      reklama?.rek?.push({text,_id: reklama?.rek[reklama?.rek?.length -1]?._id +1 || 1});
+      updateSettings(reklama);
+      ctx.reply("*Yaxshi mini reklama joylandi!*",{parse_mode:"markdown"});
+    } else {
+      ctx.deleteMessage(ctx.message.message_id);
+    }
   }
 };
 

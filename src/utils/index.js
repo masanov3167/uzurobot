@@ -22,12 +22,12 @@ const generateButton = (arr, join, private, type, page) => {
     for (let i of arr.slice(activePage, activePage + 10)) {
       array.push([
         {
-          text: type ==="/kanal" ? i.link : i.title,
-          callback_data: `info${type === "/kanal" ? "ch" : "some"}_${i._id}`,
+          text: type ==="/kanal" ? i.link : type ==="/rek" ? i.text : i.title,
+          callback_data: `info${type === "/kanal" ? "ch" : type === "/rek" ? "r" : "some"}_${i._id}`,
         },
         {
           text: "O'chirish",
-          callback_data: `del${type === "/kanal" ? "ch" : "some"}_${i._id}`,
+          callback_data: `del${type === "/kanal" ? "ch" : type === "/rek" ? "r" : "some"}_${i._id}`,
         },
       ]);
     }
@@ -77,7 +77,7 @@ const readDb = (data, obj) => {
 let generateRek = () =>{
   const config = readDb("settings", true);
   const num =  Math.floor(Math.random() * config.rek.length);
-  return config.rek[num].text
+  return config?.rek[num]?.text || "";
 }
 
 const writeDb = (data, name) => {
@@ -112,6 +112,13 @@ const updateDb = (key, id, value, name) => {
       JSON.stringify(oldData, null, 2)
     );
   }
+};
+
+const updateSettings = (data) => {
+    fs.writeFileSync(
+      path.join(__dirname, "..", "..",  `settings.json`),
+      JSON.stringify(data, null, 2)
+    );
 };
 function sendError(err, ctx) {
   const config = readDb("settings", true);
@@ -275,5 +282,6 @@ module.exports = {
   GenerateStatus,
   FindNameMeaning,
   getUserBall,
-  generateRek
+  generateRek,
+  updateSettings
 };

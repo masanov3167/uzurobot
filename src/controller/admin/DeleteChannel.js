@@ -1,7 +1,7 @@
 const { Channel, Gudok } = require("../../models");
 const MyFn = require("../TryCatch");
 const config = require("../../../config");
-const { removeDb } = require("../../utils");
+const { removeDb, readDb, updateDb, updateSettings } = require("../../utils");
 
 const Fn = async (ctx) => {
   if (ctx.from.id === config.dev) {
@@ -11,6 +11,17 @@ const Fn = async (ctx) => {
       const deletedChannel = await Channel.findOneAndDelete({ _id: cid });
       if (deletedChannel) {
         removeDb("_id", cid, "channels");
+        await ctx.answerCbQuery("Muvaffaqiyatli o'chirildi!");
+        return;
+      }
+    }
+    if (data === "delr") {
+      const reklama = readDb("settings",true);
+      const deletedRek =  reklama?.rek?.find(i => i._id === Number(cid));
+      if (deletedRek) {
+        const filter = reklama?.rek?.filter(i => i._id !== Number(cid));
+        reklama.rek = filter;
+        updateSettings(reklama);
         await ctx.answerCbQuery("Muvaffaqiyatli o'chirildi!");
         return;
       }

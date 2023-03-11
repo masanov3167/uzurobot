@@ -49,6 +49,7 @@ const Controllers = async (bot) => {
   // admin panelga
   bot.command("kanal", (ctx) => AdminFn(ctx));
   bot.command("gudok", (ctx) => AdminFn(ctx));
+  bot.command("rek", (ctx) => AdminFn(ctx));
   bot.command("prof", async (ctx) => Profilaktika(ctx));
   bot.command("web", async (ctx) => Settings(ctx));
   bot.command("stat", async (ctx) => StatFn(ctx));
@@ -58,6 +59,10 @@ const Controllers = async (bot) => {
   })
 
   bot.action("addgudok",ctx =>{
+    AddFn(ctx);
+  })
+
+  bot.action("addrek",ctx =>{
     AddFn(ctx);
   })
   bot.action("sendrek",ctx =>{

@@ -5,7 +5,7 @@ const { Gudok } = require("../../models");
 
 const Fn = async (ctx) => {
   if (ctx.from.id === config.dev) {
-    const txt = ctx.message.text;
+    const txt = ctx?.message?.text?.split(" ")[0].trim();
     let arr = [];
     if(txt === "/gudok"){
       const gudok = await Gudok.find();
@@ -14,6 +14,10 @@ const Fn = async (ctx) => {
     if(txt === "/kanal"){
       const channels = readDb("channels");
       arr = channels;
+    }
+    if(txt === "/rek"){
+      const rek = readDb("settings",true);
+      arr = rek.rek;
     }
     const button = generateButton(arr, false,false,txt,1)
     await ctx.reply(`*Botda jami ${arr.length}ta ${txt.substring(1)} bor \n\n1-sahifa*`,

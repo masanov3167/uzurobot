@@ -11,9 +11,14 @@ const Fn = async (ctx) => {
   if(type ==="/gudok"){
     const gudok = await Gudok.find();
     arr = gudok
-  }else{
+  }
+  if(type === "/kanal"){
     const channel = readDb("channels");
     arr= channel
+  }
+  if(type === "/rek"){
+    const rek = readDb("settings",true);
+    arr= rek.rek
   }
   if (ctx.from.id === config.dev) {
     ctx.telegram.editMessageText(

@@ -26,6 +26,24 @@ const Fn = async (ctx) => {
         );
       }
     }
+    if (data.substring(0, 5) === "infor") {
+      const rek = readDb("settings",true)
+      const find = rek?.rek?.find((item) => item._id === Number(cid));
+      if (find) {
+        ctx.reply(
+          `Text: *${find.text}* \nID: *${find._id}*`,
+          {
+            disable_web_page_preview: true,
+            parse_mode: "markdown",
+            reply_to_message_id: msgId,
+          }
+        );
+      } else {
+        ctx.answerCbQuery(
+          "Afsuski hozir ushbu reklama haqida ma'lumotlarni ko'ra olmaysiz :("
+        );
+      }
+    }
     if (data.substring(0, 8) === "infosome") {
       const music = await Gudok.findOne({_id: cid});
       if (music) {
