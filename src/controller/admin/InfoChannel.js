@@ -67,7 +67,7 @@ const Fn = async (ctx) => {
     if (data.substring(0, 5) === "infok") {
       const kino = await Kino.findOne({_id: cid});
       if (kino) {
-        ctx.reply(`*${kino.text}*`,{
+        ctx.reply(`*[${kino.text}](${kino.link})*`,{
           reply_markup:{
             inline_keyboard:[
               [{text:"Bazadan o'chirish",callback_data:`delk_${kino._id}`},{text:"Habarni o'chirish",callback_data:"delmsg"}]
