@@ -17,7 +17,6 @@ const Fn = async ctx =>{
       const value = { text: title.substring(0,30), cid: id, link: txt };
       const channel = new Channel(value);
       await channel.save();
-      writeDb(channel,"channels")
       ctx.scene.leave("addchannel");
       ctx.reply(
         `Yaxshi saqlandi! 🐳\n\nKanlaningiz idsi ${id}\nKanalingiz nomi ${title}\nKanalingiz havolasi ${txt}\n\Ko'rish /kanal`,

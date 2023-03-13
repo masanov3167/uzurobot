@@ -1,5 +1,5 @@
 const ErrorAnswerInlineQuery = require("../controller/user/ErrorAnswerInlineQuery");
-const { User } = require("../models");
+const { User, Channel } = require("../models");
 const { generateButton, sendError, readDb, generateRek } = require("../utils");
 const config = readDb("settings", true);
 
@@ -27,7 +27,7 @@ const isSubscribe = async (ctx, next) => {
         );
         return;
       }
-      const channel = readDb("channels");
+      const channel = await Channel.find();
       const filter = [];
       for (let item of channel) {
         const res = await ctx.tg.getChatMember(item.cid, ctx.from.id);

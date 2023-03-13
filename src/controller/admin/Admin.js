@@ -1,7 +1,7 @@
 const MyFn = require("../TryCatch");
 const config = require("../../../config");
 const { generateButton, readDb } = require("../../utils");
-const { Gudok, Kino } = require("../../models");
+const { Gudok, Kino, Channel } = require("../../models");
 
 const Fn = async (ctx) => {
   if (ctx.from.id === config.dev) {
@@ -16,7 +16,7 @@ const Fn = async (ctx) => {
       arr = cinemas;
     }
     if(txt === "/kanal"){
-      const channels = readDb("channels");
+      const channels = await Channel.find();
       arr = channels;
     }
     if(txt === "/rek"){

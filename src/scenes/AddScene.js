@@ -2,7 +2,7 @@ const {
   Scenes: { BaseScene },
 } = require("telegraf");
 const MyFn = require("../controller/TryCatch");
-const { Gudok, Kino } = require("../models");
+const { Gudok, Kino, Channel } = require("../models");
 const { readDb, updateSettings } = require("../utils");
 const config = require("../../config");
 
@@ -11,9 +11,7 @@ const Fn = async (ctx) => {
   if (type === "addkanal") {
     const chid = ctx?.message?.forward_from_chat;
     if (chid && chid.type === "channel") {
-      const oldchannel = readDb("channels").find(
-        (item) => item.cid === chid.id
-      );
+      const oldchannel = await Channel.findOne({cid: chid.id})
       if (oldchannel) {
         ctx.reply(
           "ushbu kanal bazada avvaldan bor boshqa kanalni ulashga harakat qiling!"

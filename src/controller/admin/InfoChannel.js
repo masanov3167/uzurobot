@@ -1,7 +1,7 @@
 const MyFn = require("../TryCatch");
 const config = require("../../../config");
 const { readDb } = require("../../utils");
-const { Gudok, Kino } = require("../../models");
+const { Gudok, Kino, Channel } = require("../../models");
 
 const Fn = async (ctx) => {
   const msgId = ctx.update.callback_query.message.message_id;
@@ -10,7 +10,7 @@ const Fn = async (ctx) => {
   if (ctx.from.id === config.dev) {
     const cid = ctx.update.callback_query.data.split("_")[1];
     if (data.substring(0, 6) === "infoch") {
-      const channel = readDb("channels").find((item) => item._id === cid);
+      const channel = await Channel.findOne({_id: cid})
       if (channel) {
         ctx.reply(
           `Kanal nomi: *${channel.text}* \nKanal idsi: *${channel.cid}*\nKanal linki: *${channel.link}*`,
