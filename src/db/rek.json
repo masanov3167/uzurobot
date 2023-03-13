@@ -1,8 +1,15 @@
 [
   {
     "id": 1,
-    "msgId": 2164,
+    "msgId": 1860084,
     "chid": 587517395,
-    "buttons": []
+    "buttons": [
+      [
+        {
+          "text": "Ball ishlash 🙈",
+          "switch_inline_query": "havola"
+        }
+      ]
+    ]
   }
 ]
