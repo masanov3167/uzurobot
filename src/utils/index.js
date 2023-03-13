@@ -22,12 +22,21 @@ const generateButton = (arr, join, private, type, page) => {
     for (let i of arr.slice(activePage, activePage + 10)) {
       array.push([
         {
-          text: type ==="/kanal" ? i.link : type ==="/rek" ? i.text : i.title,
-          callback_data: `info${type === "/kanal" ? "ch" : type === "/rek" ? "r" : "some"}_${i._id}`,
+          text:
+            type === "/kanal" || type === "/kino"
+              ? i.link
+              : type === "/rek"
+              ? i.text
+              : i.title,
+          callback_data: `info${
+            type === "/kanal" ? "ch" : type === "/rek" ? "r" : type ==="/kino" ? "k" : "some"
+          }_${i._id}`,
         },
         {
           text: "O'chirish",
-          callback_data: `del${type === "/kanal" ? "ch" : type === "/rek" ? "r" : "some"}_${i._id}`,
+          callback_data: `del${
+            type === "/kanal" ? "ch" : type === "/rek" ? "r" : type ==="/kino" ? "k" : "some"
+          }_${i._id}`,
         },
       ]);
     }
@@ -68,17 +77,15 @@ const readDb = (data, obj) => {
       )
     );
   } catch (e) {
-    return obj
-      ? {}
-      : [];
+    return obj ? {} : [];
   }
 };
 
-let generateRek = () =>{
+let generateRek = () => {
   const config = readDb("settings", true);
-  const num =  Math.floor(Math.random() * config.rek.length);
+  const num = Math.floor(Math.random() * config.rek.length);
   return config?.rek[num]?.text || "";
-}
+};
 
 const writeDb = (data, name) => {
   try {
@@ -115,10 +122,10 @@ const updateDb = (key, id, value, name) => {
 };
 
 const updateSettings = (data) => {
-    fs.writeFileSync(
-      path.join(__dirname, "..", "..",  `settings.json`),
-      JSON.stringify(data, null, 2)
-    );
+  fs.writeFileSync(
+    path.join(__dirname, "..", "..", `settings.json`),
+    JSON.stringify(data, null, 2)
+  );
 };
 function sendError(err, ctx) {
   const config = readDb("settings", true);
@@ -283,5 +290,5 @@ module.exports = {
   FindNameMeaning,
   getUserBall,
   generateRek,
-  updateSettings
+  updateSettings,
 };

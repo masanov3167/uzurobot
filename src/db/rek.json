@@ -1,21 +1,8 @@
 [
   {
     "id": 1,
-    "msgId": 1739,
+    "msgId": 2164,
     "chid": 587517395,
-    "buttons": [
-      [
-        {
-          "text": "Havolani ulashish",
-          "switch_inline_query": "havola"
-        }
-      ],
-      [
-        {
-          "text": "Status yozish",
-          "callback_data": "status"
-        }
-      ]
-    ]
+    "buttons": []
   }
 ]

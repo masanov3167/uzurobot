@@ -50,6 +50,7 @@ const Controllers = async (bot) => {
   bot.command("kanal", (ctx) => AdminFn(ctx));
   bot.command("gudok", (ctx) => AdminFn(ctx));
   bot.command("rek", (ctx) => AdminFn(ctx));
+  bot.command("kino", (ctx) => AdminFn(ctx));
   bot.command("prof", async (ctx) => Profilaktika(ctx));
   bot.command("web", async (ctx) => Settings(ctx));
   bot.command("stat", async (ctx) => StatFn(ctx));
@@ -63,6 +64,10 @@ const Controllers = async (bot) => {
   })
 
   bot.action("addrek",ctx =>{
+    AddFn(ctx);
+  })
+
+  bot.action("addkino",ctx =>{
     AddFn(ctx);
   })
   bot.action("sendrek",ctx =>{
@@ -196,6 +201,10 @@ const Controllers = async (bot) => {
         return;
       }
       if (ctx.message.text === "🎻 Ismizga gudok 🥁") {
+        SearchGudokFn(ctx);
+        return;
+      }
+      if (ctx.message.text === "🔍 Kino izlash 🍿") {
         SearchGudokFn(ctx);
         return;
       }

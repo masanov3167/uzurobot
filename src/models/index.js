@@ -39,8 +39,17 @@ const GudokSchema = new mongoose.Schema({
 
 const Gudok = mongoose.model("bot_gudoks", GudokSchema);
 
+
+const KinoSchema = new mongoose.Schema({
+  link: !String,
+  text: !String,
+});
+
+const Kino = mongoose.model("bot_cinemas", KinoSchema);
+
 module.exports = {
   User,
   Channel,
-  Gudok
+  Gudok,
+  Kino
 };

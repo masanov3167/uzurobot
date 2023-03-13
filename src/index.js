@@ -4,7 +4,7 @@ const config = require("../config")
 require("./core");
 
 process.on('unhandledRejection',async (err, promise) => {
-  if(String(err).includes("bot was blocked by the user") || String(err).includes("chat not found") && err?.on?.payload?.from_chat_id==config.db_channel){
+  if(String(err).includes("bot was blocked by the user") || String(err).includes("chat not found")){
     const chatid = err?.on?.payload?.chat_id;
     if(chatid){
     await  User.findOneAndRemove({cid: chatid})

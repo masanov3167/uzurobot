@@ -1,7 +1,7 @@
 const MyFn = require("../TryCatch");
 const config = require("../../../config");
 const { generateButton, readDb } = require("../../utils");
-const { Gudok } = require("../../models");
+const { Gudok, Kino } = require("../../models");
 
 const Fn = async (ctx) => {
   if (ctx.from.id === config.dev) {
@@ -11,6 +11,10 @@ const Fn = async (ctx) => {
       const gudok = await Gudok.find();
       arr = gudok;
     }
+    if(txt === "/kino"){
+      const cinemas = await Kino.find();
+      arr = cinemas;
+    }
     if(txt === "/kanal"){
       const channels = readDb("channels");
       arr = channels;
@@ -19,10 +23,12 @@ const Fn = async (ctx) => {
       const rek = readDb("settings",true);
       arr = rek.rek;
     }
-    const button = generateButton(arr, false,false,txt,1)
-    await ctx.reply(`*Botda jami ${arr.length}ta ${txt.substring(1)} bor \n\n1-sahifa*`,
+    const button = generateButton(arr, false,false,txt,1);
+    await ctx.reply(`*Botda jami ${arr.length}ta ${txt.substring(1)} bor \n\n ${arr.length>10 ? "N1-sahifa" :""}*`,
       {reply_markup: {inline_keyboard: button}, parse_mode:"markdown"}
     );
+  }else{
+    await ctx.deleteMessage(ctx.message.message_id)
   }
 };
 

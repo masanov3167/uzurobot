@@ -6,7 +6,7 @@ const { readDb, updateDb, writeDb } = require("../../utils");
 const { User } = require("../../models");
 
 const Fn = async (ctx) => {
-  const Text = `Shu xolicha jo'natishni istaysizmi?\n\n<code>/send</code> - shu xolicha yuborish\n<code>/add - Status yozish:status:1</code> - callbackli tugma qo'shish\n<code>/add - Havolani ulashish:havola:2</code> - inline tugma qo'shish\n<code>/add - Kanalga kirish:t.me/uzurobot:3</code> - url tugma qo'shish`;
+  const Text = `Shu xolicha jo'natishni istaysizmi?\n\n/send - shu xolicha yuborish\n<code>/add - Status yozish:status:1</code> - callbackli tugma qo'shish\n<code>/add - Havolani ulashish:havola:2</code> - inline tugma qo'shish\n<code>/add - Kanalga kirish:t.me/uzurobot:3</code> - url tugma qo'shish`;
   const obj = readDb("rek");
   if (!obj[0]?.msgId) {
     const chid = ctx?.message?.chat;
@@ -32,8 +32,10 @@ const Fn = async (ctx) => {
     }
     if (txt === "/send") {
       const users = await User.find();
+      let count = 0;
       for await (let item of users) {
         setTimeout(() => {
+          count++;
           ctx.telegram.copyMessage(item.cid, obj[0]?.chid, obj[0]?.msgId, {
             parse_mode: "markdown",
             disable_web_page_preview: true,
@@ -41,9 +43,12 @@ const Fn = async (ctx) => {
               inline_keyboard: obj[0]?.buttons,
             },
           });
+          if (count === users.length) {
+            ctx.reply("Yaxshi habaringiz yuborildi!");
+            ctx.scene.leave("sendrek");
+          }
         }, 90);
       }
-      await ctx.reply("Yaxshi habar yuborildi");
       return;
     }
 

@@ -11,6 +11,8 @@ const Fn = async (ctx) => {
         ? "*Kanal qo'shish uchun kanalizdan bironta postni forward qiling!\n\nDiqqat, kanalga avval botni admin qilgan bo'lishingiz kerak 👁*"
         : data === "addrek"
         ? "*Mini reklama qo'shish uchun reklamani tekst holda yuboring harflar soni 100tadan oshib ketmasin*"
+        : data === "addkino"
+        ? "*Kino qo'shish uchun kinoni menga yuboring. Eslatma sarlavhasini captionga qo'shib yozing*"
         : "*Gudok qo'shish gudokni menga yuboring, gudokga ismni captionda yozing*",
       { parse_mode: "markdown" }
     );

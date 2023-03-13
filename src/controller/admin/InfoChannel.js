@@ -1,7 +1,7 @@
 const MyFn = require("../TryCatch");
 const config = require("../../../config");
 const { readDb } = require("../../utils");
-const { Gudok } = require("../../models");
+const { Gudok, Kino } = require("../../models");
 
 const Fn = async (ctx) => {
   const msgId = ctx.update.callback_query.message.message_id;
@@ -52,6 +52,25 @@ const Fn = async (ctx) => {
           reply_markup:{
             inline_keyboard:[
               [{text:"Bazadan o'chirish",callback_data:`delsome_${music._id}`},{text:"Habarni o'chirish",callback_data:"delmsg"}]
+            ]
+          },
+          parse_mode:"markdown",
+          reply_to_message_id: msgId
+        });
+        
+      } else {
+        ctx.answerCbQuery(
+          "Afsuski hozir ushbu  haqida ma'lumotlarni ko'ra olmaysiz :("
+        );
+      }
+    }
+    if (data.substring(0, 5) === "infok") {
+      const kino = await Kino.findOne({_id: cid});
+      if (kino) {
+        ctx.reply(`*${kino.text}*`,{
+          reply_markup:{
+            inline_keyboard:[
+              [{text:"Bazadan o'chirish",callback_data:`delk_${kino._id}`},{text:"Habarni o'chirish",callback_data:"delmsg"}]
             ]
           },
           parse_mode:"markdown",

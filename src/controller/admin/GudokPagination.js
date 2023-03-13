@@ -1,6 +1,6 @@
 const MyFn = require("../TryCatch");
 const config = require("../../../config");
-const { Gudok } = require("../../models");
+const { Gudok, Kino } = require("../../models");
 const { generateButton, readDb } = require("../../utils");
 
 const Fn = async (ctx) => {
@@ -19,6 +19,10 @@ const Fn = async (ctx) => {
   if(type === "/rek"){
     const rek = readDb("settings",true);
     arr= rek.rek
+  }
+  if(txt === "/kino"){
+    const cinemas = await Kino.find();
+    arr = cinemas;
   }
   if (ctx.from.id === config.dev) {
     ctx.telegram.editMessageText(
