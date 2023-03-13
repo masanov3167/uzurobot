@@ -20,7 +20,7 @@ const Fn = async (ctx) => {
     const rek = readDb("settings",true);
     arr= rek.rek
   }
-  if(txt === "/kino"){
+  if(type === "/kino"){
     const cinemas = await Kino.find();
     arr = cinemas;
   }
